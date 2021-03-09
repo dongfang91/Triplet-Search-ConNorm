@@ -1,7 +1,10 @@
-from sentence_transformers import SentenceTransformer, models
 import argparse
-import read_files as read
 import os
+
+from sentence_transformers import SentenceTransformer, models
+
+import read_files as read
+
 
 def main(model_path, model_type, sentence_corpus, output_path):
 
@@ -14,12 +17,14 @@ def main(model_path, model_type, sentence_corpus, output_path):
         word_embedding_model = models.BERT(model_path)
 
         # Apply mean pooling to get one fixed sized sentence vector
-        pooling_model = models.Pooling(word_embedding_model.get_word_embedding_dimension(),
-                                       pooling_mode_mean_tokens=True,
-                                       pooling_mode_cls_token=False,
-                                       pooling_mode_max_tokens=False)
+        pooling_model = models.Pooling(
+            word_embedding_model.get_word_embedding_dimension(),
+            pooling_mode_mean_tokens=True,
+            pooling_mode_cls_token=False,
+            pooling_mode_max_tokens=False)
 
-        embedder = SentenceTransformer(modules=[word_embedding_model, pooling_model])
+        embedder = SentenceTransformer(
+            modules=[word_embedding_model, pooling_model])
         #### load sentence BERT models and generate sentence embeddings ####
     else:
         #### load sentence BERT models and generate sentence embeddings ####
@@ -27,24 +32,28 @@ def main(model_path, model_type, sentence_corpus, output_path):
 
     sentences_embedding = embedder.encode(sentences)
 
-    read.save_in_pickle(output_path,sentences_embedding)
-
+    read.save_in_pickle(output_path, sentences_embedding)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Generate sentence embedding for each sentence in the sentence corpus ')
+    parser = argparse.ArgumentParser(
+        description=
+        'Generate sentence embedding for each sentence in the sentence corpus '
+    )
 
     parser.add_argument('--model',
-                        help='the direcotory of the model',required= True)
+                        help='the direcotory of the model',
+                        required=True)
 
-    parser.add_argument('--model_type',
-                        help='the type of the model, sentence_bert or just bert',required= True)
+    parser.add_argument(
+        '--model_type',
+        help='the type of the model, sentence_bert or just bert',
+        required=True)
 
-    parser.add_argument('--sentences',
-                        help='the direcotory of the sentence corpus',required=True)
-
+    parser.add_argumentsentences
     parser.add_argument('--output',
-                        help='the direcotory of the sentence corpus',required=True)
+                        help='the direcotory of the sentence corpus',
+                        required=True)
 
     args = parser.parse_args()
     model_path = args.model

@@ -8,7 +8,7 @@ The approach we use for concept normalization is a transformer based vector-spac
 > [Triplet-Trained Vector Space and Sieve-Based Search Improve Biomedical Concept Normalization]().
 > In: BioNLP 2021
 
-To use the Triplet-Search-ConNorm, create an instance of `ConceptNormalizer`, and load an ontology from a tsv file (plese see the [ontology]())
+To use the Triplet-Search-ConNorm, create an instance of `ConceptNormalizer`, and load an ontology from a tsv file (plese see the [ontology](https://github.com/dongfang91/Triplet-Search-ConNorm/blob/main/data/ontology/ontology.tsv))
 
 ```python3.8
 

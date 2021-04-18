@@ -41,7 +41,7 @@ def read_dataset(train_data_path):
     #                   delimiter="\t",
     #                   quoting=csv.QUOTE_NONE)
 
-    data = csv.reader(open(os.path.join(data_path), encoding="utf-8"),
+    data = csv.reader(open(os.path.join(train_data_path), encoding="utf-8"),
                       delimiter="\t",
                       quoting=csv.QUOTE_NONE)
 
@@ -92,7 +92,7 @@ def triplets_from_labeled_dataset(input_examples):
 
     return triplets
 
-def model_training(data_path, model_name, ):
+def model_training(data_path, model_name,output_path, train_batch_size, ):
     logging.basicConfig(
         format="%(asctime)s - %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
@@ -101,7 +101,7 @@ def model_training(data_path, model_name, ):
     )
 
     # You can specify any huggingface/transformers pre-trained model here, for example, bert-base-uncased, roberta-base, xlm-roberta-base
-    model_name = '/groups/bethard/transformers/microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext/'
+    #model_name = '/groups/bethard/transformers/microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext/'
 
     ### Create a torch.DataLoader that passes training batch instances to our model
     train_batch_size = 800

@@ -32,18 +32,21 @@ To use the Triplet-Search-ConNorm, create an instance of `ConceptNormalizer`, an
 
 ### Data format
  * Please see data/ontology.tsv for the input format: each row is a pair of mention and concept.
-
+ * The same input form is also used for training sentence-transformers.
 
 ### Pre-trained models
- * Pre-trained models: word_embedding_model = models.BERT(path_to_BERT-based-models)
-                       or other models: word_embedding_model = models.RoBERTa(path_to_RoBERTa-based-models)
- * Apply mean pooling: pooling_model = models.Pooling(
+```
+word_embedding_model = models.BERT(path_to_BERT-based-models)
+pooling_model = models.Pooling(
                 word_embedding_model.get_word_embedding_dimension(),pooling_mode_mean_tokens=True)
-* SentenceTransformer models: concept_normalizer = SentenceTransformer(
+concept_normalizer = SentenceTransformer(
                 modules=[word_embedding_model, pooling_model])
+```
 
 ### Fine-tuned sentence-transformer based models
- * SentenceTransformer model: concept_normalizer = SentenceTransformer(model_name_or_path)
+```
+concept_normalizer = SentenceTransformer(model_name_or_path)
+```
  * SentenceTransformer model is fine-tuned using triplet_training.py
 
   ### Code to train sentence-transformer using triplet network

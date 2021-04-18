@@ -4,7 +4,7 @@ The Triplet-Search-ConNorm library provides models for normalizing textual menti
 ## Triplet-Trained Vector Space Model
 The approach we use for concept normalization is a transformer based vector-space model, which encodes mentions and concepts via transformer networks that are trained via a triplet objective with online hard triplet mining.
 
-> Dongfang Xu, and Steven Bethard. 2018.
+> Dongfang Xu, and Steven Bethard. 2021.
 > [Triplet-Trained Vector Space and Sieve-Based Search Improve Biomedical Concept Normalization]().
 > In: BioNLP 2021
 
@@ -57,7 +57,6 @@ python3.7 triplet_training.py \
 --task_name conceptnorm \
 --do_train \
 --do_eval \
---do_predict \
 --data_dir data/askapatient/0/ \
 --label_dir data/askapatient/label.txt \
 --max_seq_length 64 \

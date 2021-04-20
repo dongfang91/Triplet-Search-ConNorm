@@ -27,12 +27,11 @@ python3.7 triplet_training.py \
 --do_train \
 --do_eval \
 --do_predict \
---data_dir data/askapatient/0/ \
---label_dir data/askapatient/label.txt \
---max_seq_length 64 \
---per_device_eval_batch_size=8 \
---per_device_train_batch_size=8 \
+--data_dir data/ncbi/ \
+--label_dir data/ncbi/label.txt \
+--max_seq_length 16 \
+--per_device_train_batch_size=1000 \
 --learning_rate 2e-5 \
---num_train_epochs 3.0 \
+--num_train_epochs 20.0 \
 --output_dir /path/to/model_new/
 ```

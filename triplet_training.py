@@ -92,7 +92,7 @@ def triplets_from_labeled_dataset(input_examples):
 
     return triplets
 
-def model_training(data_path, model_name,output_path, train_batch_size, ):
+def model_training(data_path, model_name,output_path, train_batch_size ):
     logging.basicConfig(
         format="%(asctime)s - %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",

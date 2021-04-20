@@ -20,9 +20,9 @@ import read_files as read
 class ConceptNormalizer():
     """
     Loads or create a concept normalizer model, that can be used to map concepts/mentions to embeddings.
-    :param model_name_or_path: If it is a filepath on disc, it loads the model from that path. If it is not a path, it first tries to download a pre-trained SentenceTransformer model. If that fails, tries to construct a model from Huggingface models repository with that name.
+    :param model_name_or_path: Filepath of pre-trained LM or fine-tuned sentence-transformers. If it is a path for fine-tuned sentence-transformer, please also set sentence_transformer True.
     :sentence_transformer: This parameter can be used to create custom SentenceTransformer models from scratch.
-    :search_over_synonyms: Device (like 'cuda' / 'cpu') that should be used for computation. If None, checks if a GPU can be used.
+    :search_over_synonyms: Whether to generate concept embeddings by averaging synonyms of that concept and then search over concept.
     """
     def __init__(
         self,

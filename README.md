@@ -17,7 +17,7 @@ To use the Triplet-Search-ConNorm, create an instance of `ConceptNormalizer`, an
 >>> normalizer.load_ontology('path-to-ontology')
 >>> normalizer.normalize("head spinning", top_k=4)
 [('C0273239', 'head wound', 0.96794385), ('C0018670', 'HEAD', 0.96687186), ('C0018670', 'head', 0.96687186), ('C0230420', 'legs', 0.96390116)]
->>> normalizer.add_terms(concepts=["C0012833"], synonyms=["head spinning"])
+>>> normalizer.add_terms(term_concept_pairs=[("head spinning","C0012833")])
 >>> normalizer.normalize("head spinning", top_k=4)
 [('C0012833', 'head spinning', 0.99999934), ('C0273239', 'head wound', 0.96794385), ('C0018670', 'HEAD', 0.96687186), ('C0018670', 'head', 0.96687186)]
 ```

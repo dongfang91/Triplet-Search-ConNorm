@@ -97,8 +97,13 @@ class ConceptNormalizer():
         else:
             raise ValueError("Please specify the path of ontology files")
 
-    def add_terms(self, concepts=[], synonyms=[]):
-        ontology = zip(synonyms, concepts)
+    def add_terms(self, term_concept_pairs=[]):
+        """
+        term_concept_pairs is a list of 2-element tuples,
+        [(syn_1, concept_1), (syn_2,concept_2),...]
+        """
+        ontology = [[item[0], item[1]] for item in term_concept_pairs]
+
         self.generate_embeddings(ontology)
 
     def normalize(self, mention, top_k):

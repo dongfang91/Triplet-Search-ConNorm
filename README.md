@@ -5,8 +5,8 @@ The Triplet-Search-ConNorm library provides models for normalizing textual menti
 The approach we use for concept normalization is a transformer based vector-space model, which encodes mentions and concepts via transformer networks that are trained via a triplet objective with online hard triplet mining.
 
 > Dongfang Xu, and Steven Bethard. 2021.
-> [Triplet-Trained Vector Space and Sieve-Based Search Improve Biomedical Concept Normalization]().
-> In: BioNLP 2021
+> [Triplet-Trained Vector Space and Sieve-Based Search Improve Biomedical Concept Normalization](https://www.aclweb.org/anthology/2021.bionlp-1.2).
+> In: Proceedings of the 20th Workshop on Biomedical Language Processing
 
 To use the Triplet-Search-ConNorm, create an instance of `ConceptNormalizer`, and load an ontology from a tsv file (plese see the [ontology](https://github.com/dongfang91/Triplet-Search-ConNorm/blob/main/data/ontology/ontology.tsv))
 
@@ -31,8 +31,10 @@ To use the Triplet-Search-ConNorm, create an instance of `ConceptNormalizer`, an
 ## Getting Started
 
 ### Data format
- * Please see data/ontology.tsv for the input format: each row is a pair of mention and concept.
- * The same input form is also used for training sentence-transformers.
+ * Please see data/ontology/ontology.tsv, data/input_path/train.tsv for the input format: each row is a pair of mention and concept.
+ * They are also used for training sentence-transformers.
+ * process_input.py shows how to process ontology and generate input for batch processing;
+ it also shows how to generate the evaluation files for the following triplet training.
 
 ### Pre-trained models
 ```
@@ -49,20 +51,19 @@ concept_normalizer = SentenceTransformer(model_name_or_path)
 ```
  * SentenceTransformer model is fine-tuned using triplet_training.py
 
-  ### Code to train sentence-transformer using triplet network
+### Code to train sentence-transformer using triplet network
 * code to run the triplet network for the concept normalization tasks using ncbi dataset:
 ```
 python3.7 triplet_training.py \
---model_name_or_path bert-base-uncased \
---task_name conceptnorm \
---do_train \
---do_eval \
---data_dir data/askapatient/0/ \
---label_dir data/askapatient/label.txt \
---max_seq_length 64 \
---per_device_eval_batch_size=8 \
---per_device_train_batch_size=8 \
---learning_rate 2e-5 \
---num_train_epochs 3.0 \
---output_dir /path/to/model_new/
+--model bert-base-uncased \
+--input_path data/input_path/train.tsv \
+--evaluator_path data/evaluator_path/ \
+--train_batch_size 1024 \
+--samples_per_label 3 \
+--epoch_size 3.0 \
+--output_path /path/to/output/
 ```
+
+
+### Similarity Search Strategy
+plese see the [similarity_search_strategy](https://github.com/dongfang91/Triplet-Search-ConNorm/blob/main/similarity_search_strategy/))
